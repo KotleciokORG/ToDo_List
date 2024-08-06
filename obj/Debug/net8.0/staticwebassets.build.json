@@ -1,0 +1,77 @@
+{
+  "Version": 1,
+  "Hash": "/6wG05zSg5aeGNILJGCrfY+IC4wrnbcYLBAKByMLcbc=",
+  "Source": "ToDo_List",
+  "BasePath": "_content/ToDo_List",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "ToDo_List/wwwroot",
+      "Source": "ToDo_List",
+      "ContentRoot": "/home/kacper/Programowanie/RiderProjects/BlazorApp/ToDo_List/wwwroot/",
+      "BasePath": "_content/ToDo_List",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/home/kacper/Programowanie/RiderProjects/BlazorApp/ToDo_List/obj/Debug/net8.0/scopedcss/bundle/ToDo_List.styles.css",
+      "SourceId": "ToDo_List",
+      "SourceType": "Computed",
+      "ContentRoot": "/home/kacper/Programowanie/RiderProjects/BlazorApp/ToDo_List/obj/Debug/net8.0/scopedcss/bundle/",
+      "BasePath": "_content/ToDo_List",
+      "RelativePath": "ToDo_List.styles.css",
+      "AssetKind": "All",
+      "AssetMode": "CurrentProject",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ApplicationBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/home/kacper/Programowanie/RiderProjects/BlazorApp/ToDo_List/obj/Debug/net8.0/scopedcss/bundle/ToDo_List.styles.css"
+    },
+    {
+      "Identity": "/home/kacper/Programowanie/RiderProjects/BlazorApp/ToDo_List/obj/Debug/net8.0/scopedcss/projectbundle/ToDo_List.bundle.scp.css",
+      "SourceId": "ToDo_List",
+      "SourceType": "Computed",
+      "ContentRoot": "/home/kacper/Programowanie/RiderProjects/BlazorApp/ToDo_List/obj/Debug/net8.0/scopedcss/projectbundle/",
+      "BasePath": "_content/ToDo_List",
+      "RelativePath": "ToDo_List.bundle.scp.css",
+      "AssetKind": "All",
+      "AssetMode": "Reference",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ProjectBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/home/kacper/Programowanie/RiderProjects/BlazorApp/ToDo_List/obj/Debug/net8.0/scopedcss/projectbundle/ToDo_List.bundle.scp.css"
+    },
+    {
+      "Identity": "/home/kacper/Programowanie/RiderProjects/BlazorApp/ToDo_List/wwwroot/app.css",
+      "SourceId": "ToDo_List",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/kacper/Programowanie/RiderProjects/BlazorApp/ToDo_List/wwwroot/",
+      "BasePath": "_content/ToDo_List",
+      "RelativePath": "app.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/app.css"
+    }
+  ]
+}
