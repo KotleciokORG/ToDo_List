@@ -22,6 +22,10 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9BcHAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[/home/kacper/Programowanie/RiderProjects/BlazorApp/ToDo_List/Components/Layout/NavBar.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvTmF2QmFyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/kacper/Programowanie/RiderProjects/BlazorApp/ToDo_List/Components/Pages/Error.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9FcnJvci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 

@@ -12,7 +12,4 @@
   <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <SourceRoot Include="/home/kacper/.nuget/packages/" />
   </ItemGroup>
-  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <Import Project="$(NuGetPackageRoot)blazorise/1.6.0/buildTransitive/Blazorise.props" Condition="Exists('$(NuGetPackageRoot)blazorise/1.6.0/buildTransitive/Blazorise.props')" />
-  </ImportGroup>
 </Project>
