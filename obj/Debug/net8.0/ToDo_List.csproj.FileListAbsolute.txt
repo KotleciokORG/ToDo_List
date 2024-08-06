@@ -26,3 +26,4 @@
 /home/kacper/Programowanie/RiderProjects/BlazorApp/ToDo_List/obj/Debug/net8.0/ToDo_List.pdb
 /home/kacper/Programowanie/RiderProjects/BlazorApp/ToDo_List/obj/Debug/net8.0/ToDo_List.genruntimeconfig.cache
 /home/kacper/Programowanie/RiderProjects/BlazorApp/ToDo_List/obj/Debug/net8.0/ref/ToDo_List.dll
+/home/kacper/Programowanie/RiderProjects/BlazorApp/ToDo_List/obj/Debug/net8.0/ToDo_List.sourcelink.json
