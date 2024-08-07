@@ -1,51 +1,41 @@
 ﻿@page "/"
 @using Models
+@using Clients
 
 <PageTitle>To Do List</PageTitle>
 
-<table class="table table-striped table-bordered table-hover table-secondary mt-3" >
-    <thead class="table-dark">
-        <th>Task</th>
-        <th>Description</th>
-        <th>Important Level</th>
-        <th>Time Required</th>
-        <th></th>
-    </thead>
-    <tbody>
-        @foreach (var task in tasks){
-            <tr>
-                <td>@task.TaskName</td>
-                <td>@task.Description</td>
-                <td>@task.ImportantLevel</td>
-                <td>@task.TimeRequired</td>
-                <td></td>
-            </tr>
-        }
-    </tbody>
-</table>
+@if(taskSummary is null){
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table table-striped table-bordered table-hover table-secondary mt-3" >
+        <thead class="table-dark">
+            <th>Task</th>
+            <th>Description</th>
+            <th>Important Level</th>
+            <th>Time Required</th>
+            <th></th>
+        </thead>
+        <tbody>
+            @foreach (var task in taskSummary){
+                <tr>
+                    <td>@task.TaskName</td>
+                    <td>@task.Description</td>
+                    <td>@task.ImportantLevel</td>
+                    <td>@task.TimeRequired</td>
+                    <td></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
 
 @code{
-    private TaskSummary[] tasks = [
-        new() {
-            Id = 1,
-            TaskName = "Poucz sie",
-            Description = "Informatyka",
-            ImportantLevel = 6,
-            TimeRequired = new TimeOnly(2,30)
-        },
-        new() {
-            Id = 2,
-            TaskName = "Wysypiaj sie",
-            Description = "Najlepiej 8h",
-            ImportantLevel = 10,
-            TimeRequired = new TimeOnly(8,0)
-        },
-        new() {
-            Id = 3,
-            TaskName = "Zjedz Sniadanie",
-            Description = "Platki na mleku",
-            ImportantLevel = 3,
-            TimeRequired = new TimeOnly(1,30)
-        }
-    ];
+    private TaskClient taskClient = new();
+    private TaskSummary[]? taskSummary;
+    protected override void OnInitialized()
+    {
+        taskSummary = taskClient.GetTaskSummaries();
+    }
 }
