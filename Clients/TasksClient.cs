@@ -2,48 +2,48 @@ using ToDo_List.Models;
 
 namespace ToDo_List.Clients;
 
-public class TasksClient{
-    private readonly List<TaskSummary> tasks = [
+public class QuestsClient{
+    private readonly List<QuestSummary> quests = [
         new() {
             Id = 1,
-            TaskName = "Poucz sie",
+            QuestName = "Poucz sie",
             Description = "Informatyka",
-            TaskGenre = "Nauka",
+            QuestGenre = "Nauka",
             Importance = 6,
             StartTime = new TimeOnly(2,30)
         },
         new() {
             Id = 2,
-            TaskName = "Wysypiaj sie",
+            QuestName = "Wysypiaj sie",
             Description = "Najlepiej 8h",
-            TaskGenre = "Codzienne",
+            QuestGenre = "Codzienne",
             Importance = 10,
             StartTime = new TimeOnly(8,0)
         },
         new() {
             Id = 3,
-            TaskName = "Zjedz Sniadanie",
+            QuestName = "Zjedz Sniadanie",
             Description = "Platki na mleku",
-            TaskGenre = "Żywienie",
+            QuestGenre = "Żywienie",
             Importance = 3,
             StartTime = new TimeOnly(1,30)
         }
     ];
 
     private readonly Genre[] genres = new GenresClient().GetGenres();
-    public TaskSummary[] GetTaskSummaries() => tasks.ToArray();
-    public void AddTask(TaskDetails task){
-        ArgumentException.ThrowIfNullOrWhiteSpace(task.TaskGenreId);
-        TaskSummary taskSummary = new(){
-            Id = tasks.Count+1,
-            TaskName = task.TaskName,
-            Description = task.Description,
-            TaskGenre = genres.Single(genre => genre.Id == int.Parse(task.TaskGenreId)).GenreName,
-            Importance = task.Importance,
-            StartTime = task.StartTime
+    public QuestSummary[] GetQuestSummaries() => quests.ToArray();
+    public void AddQuest(QuestDetails quest){
+        ArgumentException.ThrowIfNullOrWhiteSpace(quest.QuestGenreId);
+        QuestSummary questSummary = new(){
+            Id = quests.Count+1,
+            QuestName = quest.QuestName,
+            Description = quest.Description,
+            QuestGenre = genres.Single(genre => genre.Id == int.Parse(quest.QuestGenreId)).GenreName,
+            Importance = quest.Importance,
+            StartTime = quest.StartTime
         };
 
-        tasks.Add(taskSummary);
+        quests.Add(questSummary);
     }
 }
 

@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents();
-builder.Services.AddSingleton<TasksClient>();
+builder.Services.AddSingleton<QuestsClient>();
 
 var app = builder.Build();
 

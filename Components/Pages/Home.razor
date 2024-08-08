@@ -1,33 +1,33 @@
 ﻿@page "/"
 @using Models
 @using Clients
-@inject TasksClient Tasks
+@inject QuestsClient Quests
 
 <PageTitle>To Do List</PageTitle>
 
-@if(tasksSummaries is null){
+@if(questsSummaries is null){
     <p><em>Loading...</em></p>
 }
 else
 {
-    <a role="button" class="btn btn-primary" href="/edittask">New task</a>
+    <a role="button" class="btn btn-primary" href="/editquest">New quest</a>
     <table class="table table-striped table-bordered table-hover table-secondary mt-3" >
         <thead class="table-dark">
-            <th>Task</th>
+            <th>Quest</th>
             <th>Description (optional)</th>
-            <th>Task Genre</th>
+            <th>Quest Genre</th>
             <th>Importance</th>
             <th>Time Required</th>
             <th></th>
         </thead>
         <tbody>
-            @foreach (var taskSummary in tasksSummaries){
+            @foreach (var questSummary in questsSummaries){
                 <tr>
-                    <td>@taskSummary.TaskName</td>
-                    <td>@taskSummary.Description</td>
-                    <td>@taskSummary.TaskGenre</td>
-                    <td>@taskSummary.Importance</td>
-                    <td>@taskSummary.StartTime</td>
+                    <td>@questSummary.QuestName</td>
+                    <td>@questSummary.Description</td>
+                    <td>@questSummary.QuestGenre</td>
+                    <td>@questSummary.Importance</td>
+                    <td>@questSummary.StartTime</td>
                     <td></td>
                 </tr>
             }
@@ -36,9 +36,9 @@ else
 }
 
 @code{
-    private TaskSummary[]? tasksSummaries;
+    private QuestSummary[]? questsSummaries;
     protected override void OnInitialized()
     {
-        tasksSummaries = Tasks.GetTaskSummaries();
+        questsSummaries = Quests.GetQuestSummaries();
     }
 }

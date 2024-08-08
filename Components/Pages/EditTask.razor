@@ -1,30 +1,30 @@
-﻿@page "/edittask"
+﻿@page "/editquest"
 @using Clients
 @using Models
 @inject NavigationManager Navigator
-@inject TasksClient Tasks
+@inject QuestsClient Quests
 
-<PageTitle>New Task</PageTitle>
-<h3>New Task</h3>
+<PageTitle>New Quest</PageTitle>
+<h3>New Quest</h3>
 
 <div class="row">
   <div class="col-md-4">
-    <EditForm FormName="EditTask" Model="@task" OnSubmit="HandleEdit">
+    <EditForm FormName="EditQuest" Model="@quest" OnSubmit="HandleEdit">
       <div class="mb-3">
-        <label for="name" class="form-label">Task Name:</label>
-        <InputText id="name" @bind-Value="task.TaskName" class="form-control" />
+        <label for="name" class="form-label">Quest Name:</label>
+        <InputText id="name" @bind-Value="quest.QuestName" class="form-control" />
       </div>
       <div class="mb-3">
-        <label for="desc" class="form-label">Task Description (optional):</label>
-        <InputText id="desc" @bind-Value="task.Description" class="form-control" />
+        <label for="desc" class="form-label">Quest Description (optional):</label>
+        <InputText id="desc" @bind-Value="quest.Description" class="form-control" />
       </div>
       @if(genres is null){
         <p><em>Loading...</em></p>
       }
       else{
         <div class="mb-3">
-          <label for="genre" class="form-label">Task Genre:</label>
-          <InputSelect id="genre" @bind-Value="task.TaskGenreId" class="form-select" >
+          <label for="genre" class="form-label">Quest Genre:</label>
+          <InputSelect id="genre" @bind-Value="quest.QuestGenreId" class="form-select" >
             <option value="" >Select genre</option>
             @foreach(var genre in genres){
               <option value="@genre.Id">@genre.GenreName</option>
@@ -34,12 +34,12 @@
       </div>
       }
       <div class="mb-3">
-        <label for="importance" class="form-label">Task Importance:</label>
-        <InputNumber id="importance" @bind-Value="task.Importance" class="form-control" />
+        <label for="importance" class="form-label">Quest Importance:</label>
+        <InputNumber id="importance" @bind-Value="quest.Importance" class="form-control" />
       </div>
       <div class="mb-3">
         <label for="starttime" class="form-label">Start Time:</label>
-        <InputDate id="starttime" Type="InputDateType.Time" @bind-Value="@task.StartTime" />
+        <InputDate id="starttime" Type="InputDateType.Time" @bind-Value="@quest.StartTime" />
       </div>
       <button type="submit" class="btn btn-primary">Submit!</button>
       <a role="button" class="btn btn-secondary" href="/">Cancel</a>
@@ -49,10 +49,10 @@
 </div>
 
 @code{ 
-  //task details to przechodnia struktura aby utworzyc task summary z uzyciem genrow
+  //quest details to przechodnia struktura aby utworzyc quest summary z uzyciem genrow
   [SupplyParameterFromForm]
-  private TaskDetails task { get; set; } = new(){
-    TaskName = string.Empty
+  private QuestDetails quest { get; set; } = new(){
+    QuestName = string.Empty
   };
 
   private GenresClient genresClient = new();
@@ -63,7 +63,7 @@
     genres = genresClient.GetGenres();
   } 
   private void HandleEdit(){
-    Tasks.AddTask(task);
+    Quests.AddQuest(quest);
     Navigator.NavigateTo("/");
   }
 }    
