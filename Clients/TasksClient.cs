@@ -30,10 +30,20 @@ public class TasksClient{
         }
     ];
 
+    private readonly Genre[] genres = new GenresClient().GetGenres();
     public TaskSummary[] GetTaskSummaries() => tasks.ToArray();
-
     public void AddTask(TaskDetails task){
-        
+        ArgumentException.ThrowIfNullOrWhiteSpace(task.TaskGenreId);
+        TaskSummary taskSummary = new(){
+            Id = tasks.Count+1,
+            TaskName = task.TaskName,
+            Description = task.Description,
+            TaskGenre = genres.Single(genre => genre.Id == int.Parse(task.TaskGenreId)).GenreName,
+            Importance = task.Importance,
+            StartTime = task.StartTime
+        };
+
+        tasks.Add(taskSummary);
     }
 }
 

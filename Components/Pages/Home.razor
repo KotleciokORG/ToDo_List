@@ -1,6 +1,7 @@
 ﻿@page "/"
 @using Models
 @using Clients
+@inject TasksClient Tasks
 
 <PageTitle>To Do List</PageTitle>
 
@@ -9,6 +10,7 @@
 }
 else
 {
+    <a role="button" class="btn btn-primary" href="/edittask">New task</a>
     <table class="table table-striped table-bordered table-hover table-secondary mt-3" >
         <thead class="table-dark">
             <th>Task</th>
@@ -34,10 +36,9 @@ else
 }
 
 @code{
-    private TasksClient tasksClient = new();
     private TaskSummary[]? tasksSummaries;
     protected override void OnInitialized()
     {
-        tasksSummaries = tasksClient.GetTaskSummaries();
+        tasksSummaries = Tasks.GetTaskSummaries();
     }
 }
