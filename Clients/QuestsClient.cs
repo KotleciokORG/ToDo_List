@@ -45,5 +45,22 @@ public class QuestsClient{
 
         quests.Add(questSummary);
     }
+    public QuestDetails GetQuest(int ID){
+        //chce w genres znalezc genre ktory zgadza z 
+        Genre? genre = new GenresClient().GetGenre(ID);
+        ArgumentNullException.ThrowIfNull(genre);
+
+        QuestSummary? quest = quests.Find(quest_summary => 
+                                String.Compare(genre.GenreName,quest_summary.QuestGenre,true) == 0);
+        ArgumentNullException.ThrowIfNull(quest);
+        return new(){
+            Id = ID,
+            QuestName = quest.QuestName,
+            Description = quest.Description,
+            QuestGenreId = genre.Id.ToString(),
+            Importance = quest.Importance,
+            StartTime = quest.StartTime
+        };
+    }
 }
 

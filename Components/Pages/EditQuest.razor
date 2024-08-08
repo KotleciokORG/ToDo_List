@@ -1,4 +1,5 @@
 ﻿@page "/editquest"
+@page "/editquest/{id:int}"
 @using Clients
 @using Models
 @inject NavigationManager Navigator
@@ -9,19 +10,23 @@
 
 <div class="row">
   <div class="col-md-4">
-    <EditForm FormName="EditQuest" Model="@quest" OnSubmit="HandleEdit">
+    <EditForm FormName="EditQuest" Model="@quest" OnValidSubmit="HandleEdit">
+      <DataAnnotationsValidator />
       <div class="mb-3">
         <label for="name" class="form-label">Quest Name:</label>
         <InputText id="name" @bind-Value="quest.QuestName" class="form-control" />
+        <ValidationMessage For="() => quest.QuestName" />
       </div>
       <div class="mb-3">
         <label for="desc" class="form-label">Quest Description (optional):</label>
         <InputText id="desc" @bind-Value="quest.Description" class="form-control" />
       </div>
-      @if(genres is null){
+      @if(genres is null)
+      {
         <p><em>Loading...</em></p>
       }
-      else{
+      else
+      {
         <div class="mb-3">
           <label for="genre" class="form-label">Quest Genre:</label>
           <InputSelect id="genre" @bind-Value="quest.QuestGenreId" class="form-select" >
@@ -31,11 +36,13 @@
             }
           
           </InputSelect>
+          <ValidationMessage For="() => quest.QuestGenreId" />
       </div>
       }
       <div class="mb-3">
         <label for="importance" class="form-label">Quest Importance:</label>
         <InputNumber id="importance" @bind-Value="quest.Importance" class="form-control" />
+        <ValidationMessage For="() => quest.Importance" />
       </div>
       <div class="mb-3">
         <label for="starttime" class="form-label">Start Time:</label>
@@ -49,16 +56,28 @@
 </div>
 
 @code{ 
+  [Parameter]
+  public int? Id {get; set;}
   //quest details to przechodnia struktura aby utworzyc quest summary z uzyciem genrow
   [SupplyParameterFromForm]
-  private QuestDetails quest { get; set; } = new(){
-    QuestName = string.Empty
-  };
+  private QuestDetails quest { get; set; }
 
   private GenresClient genresClient = new();
   private Genre[]? genres;
 
   //dlaczego nie genres=new genresClient().GetGenres?
+  protected override void OnParametersSet(){
+    
+    
+    if(Id is null){
+      quest = new(){
+        QuestName = string.Empty
+      };
+    }
+    else{
+      quest = Quests.GetQuest(Id.Value);
+    }
+  }
   protected override void OnInitialized(){
     genres = genresClient.GetGenres();
   } 

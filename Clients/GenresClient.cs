@@ -3,7 +3,7 @@ using ToDo_List.Models;
 namespace ToDo_List.Clients;
 
 public class GenresClient{
-    private List<Genre> genres = [
+    private readonly List<Genre> genres = [
         new() {
             Id = 1,
             GenreName = "Codzienne"
@@ -23,4 +23,5 @@ public class GenresClient{
     ];
 
     public Genre[] GetGenres() => genres.ToArray();
+    public Genre? GetGenre(int id) => genres.Find(genre => id == genre.Id);
 }
