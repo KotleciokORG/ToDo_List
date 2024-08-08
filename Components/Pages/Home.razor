@@ -4,7 +4,7 @@
 
 <PageTitle>To Do List</PageTitle>
 
-@if(taskSummary is null){
+@if(tasksSummaries is null){
     <p><em>Loading...</em></p>
 }
 else
@@ -12,18 +12,20 @@ else
     <table class="table table-striped table-bordered table-hover table-secondary mt-3" >
         <thead class="table-dark">
             <th>Task</th>
-            <th>Description</th>
-            <th>Important Level</th>
+            <th>Description (optional)</th>
+            <th>Task Genre</th>
+            <th>Importance</th>
             <th>Time Required</th>
             <th></th>
         </thead>
         <tbody>
-            @foreach (var task in taskSummary){
+            @foreach (var taskSummary in tasksSummaries){
                 <tr>
-                    <td>@task.TaskName</td>
-                    <td>@task.Description</td>
-                    <td>@task.ImportantLevel</td>
-                    <td>@task.TimeRequired</td>
+                    <td>@taskSummary.TaskName</td>
+                    <td>@taskSummary.Description</td>
+                    <td>@taskSummary.TaskGenre</td>
+                    <td>@taskSummary.Importance</td>
+                    <td>@taskSummary.StartTime</td>
                     <td></td>
                 </tr>
             }
@@ -32,10 +34,10 @@ else
 }
 
 @code{
-    private TaskClient taskClient = new();
-    private TaskSummary[]? taskSummary;
+    private TasksClient tasksClient = new();
+    private TaskSummary[]? tasksSummaries;
     protected override void OnInitialized()
     {
-        taskSummary = taskClient.GetTaskSummaries();
+        tasksSummaries = tasksClient.GetTaskSummaries();
     }
 }

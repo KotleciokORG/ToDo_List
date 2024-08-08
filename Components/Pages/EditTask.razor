@@ -1,0 +1,61 @@
+﻿@page "/edittask"
+@using Clients
+@using Models
+
+<PageTitle>New Task</PageTitle>
+<h3>New Task</h3>
+
+<div class="row">
+  <div class="col-md-4">
+    <EditForm FormName="EditTask" Model="@task">
+      <div class="mb-3">
+        <label for="name" class="form-label">Task Name:</label>
+        <InputText id="name" @bind-Value="task.TaskName" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label for="desc" class="form-label">Task Description (optional):</label>
+        <InputText id="desc" @bind-Value="task.Description" class="form-control" />
+      </div>
+      @if(genres is null){
+        <p><em>Loading...</em></p>
+      }
+      else{
+        <div class="mb-3">
+          <label for="genre" class="form-label">Task Genre:</label>
+          <InputSelect id="genre" @bind-Value="task.TaskGenreId" class="form-select" >
+            <option value="" >Select genre</option>
+            @foreach(var genre in genres){
+              <option value="@genre.Id">@genre.GenreName</option>
+            }
+          
+          </InputSelect>
+      </div>
+      }
+      <div class="mb-3">
+        <label for="importance" class="form-label">Task Importance:</label>
+        <InputNumber id="importance" @bind-Value="task.Importance" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label for="starttime" class="form-label">Start Time:</label>
+        <InputDate id="starttime" Type="InputDateType.Time" @bind-Value="@task.StartTime" />
+      </div>
+
+      
+    </EditForm>
+  </div>
+</div>
+
+@code{ 
+  //task details to przechodnia struktura aby utworzyc task summary z uzyciem genrow
+  private TaskDetails task = new(){
+    TaskName = string.Empty
+  };
+
+  private GenresClient genresClient = new();
+  private Genre[]? genres;
+
+  //dlaczego nie genres=new genresClient().GetGenres?
+  protected override void OnInitialized(){
+    genres = genresClient.GetGenres();
+  } 
+}    
