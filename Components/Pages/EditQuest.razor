@@ -5,28 +5,28 @@
 @inject NavigationManager Navigator
 @inject QuestsClient Quests
 
-<PageTitle>New Quest</PageTitle>
-<h3>New Quest</h3>
+<PageTitle>@title</PageTitle>
+<h3>@title</h3>
 
-<div class="row">
-  <div class="col-md-4">
-    <EditForm FormName="EditQuest" Model="@quest" OnValidSubmit="HandleEdit">
-      <DataAnnotationsValidator />
-      <div class="mb-3">
-        <label for="name" class="form-label">Quest Name:</label>
-        <InputText id="name" @bind-Value="quest.QuestName" class="form-control" />
-        <ValidationMessage For="() => quest.QuestName" />
-      </div>
-      <div class="mb-3">
-        <label for="desc" class="form-label">Quest Description (optional):</label>
-        <InputText id="desc" @bind-Value="quest.Description" class="form-control" />
-      </div>
-      @if(genres is null)
-      {
-        <p><em>Loading...</em></p>
-      }
-      else
-      {
+@if(genres is null || quest is null)
+{
+  <p><em>Loading...</em></p>
+}
+else
+{
+  <div class="row">
+    <div class="col-md-4">
+      <EditForm FormName="EditQuest" Model="@quest" OnValidSubmit="HandleEdit">
+        <DataAnnotationsValidator />
+        <div class="mb-3">
+          <label for="name" class="form-label">Quest Name:</label>
+          <InputText id="name" @bind-Value="quest.QuestName" class="form-control" />
+          <ValidationMessage For="() => quest.QuestName" />
+        </div>
+        <div class="mb-3">
+          <label for="desc" class="form-label">Quest Description (optional):</label>
+          <InputText id="desc" @bind-Value="quest.Description" class="form-control" />
+        </div>
         <div class="mb-3">
           <label for="genre" class="form-label">Quest Genre:</label>
           <InputSelect id="genre" @bind-Value="quest.QuestGenreId" class="form-select" >
@@ -37,52 +37,66 @@
           
           </InputSelect>
           <ValidationMessage For="() => quest.QuestGenreId" />
-      </div>
-      }
-      <div class="mb-3">
-        <label for="importance" class="form-label">Quest Importance:</label>
-        <InputNumber id="importance" @bind-Value="quest.Importance" class="form-control" />
-        <ValidationMessage For="() => quest.Importance" />
-      </div>
-      <div class="mb-3">
-        <label for="starttime" class="form-label">Start Time:</label>
-        <InputDate id="starttime" Type="InputDateType.Time" @bind-Value="@quest.StartTime" />
-      </div>
-      <button type="submit" class="btn btn-primary">Submit!</button>
-      <a role="button" class="btn btn-secondary" href="/">Cancel</a>
-      
-    </EditForm>
+        </div>
+        <div class="mb-3">
+          <label for="importance" class="form-label">Quest Importance:</label>
+          <InputNumber id="importance" @bind-Value="quest.Importance" class="form-control" />
+          <ValidationMessage For="() => quest.Importance" />
+        </div>
+        <div class="mb-3">
+          <label for="starttime" class="form-label">Start Time:</label>
+          <InputDate id="starttime" Type="InputDateType.Time" @bind-Value="@quest.StartTime" />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit!</button>
+        <a role="button" class="btn btn-secondary" href="/">Cancel</a>
+        
+      </EditForm>
+    </div>
   </div>
-</div>
+}
 
 @code{ 
+  private string title = String.Empty;
   [Parameter]
   public int? Id {get; set;}
   //quest details to przechodnia struktura aby utworzyc quest summary z uzyciem genrow
   [SupplyParameterFromForm]
-  private QuestDetails quest { get; set; }
+  private QuestDetails? quest { get; set; } //na poczatku null, przy inicjalizacji sie ustawia
 
   private GenresClient genresClient = new();
   private Genre[]? genres;
 
   //dlaczego nie genres=new genresClient().GetGenres?
   protected override void OnParametersSet(){
-    
+    if(quest is not null){
+      return;
+    }
     
     if(Id is null){
       quest = new(){
         QuestName = string.Empty
       };
+      title = "New quest";
     }
     else{
       quest = Quests.GetQuest(Id.Value);
-    }
+      title = $"Edit {quest.QuestName}";
+}
   }
   protected override void OnInitialized(){
     genres = genresClient.GetGenres();
   } 
   private void HandleEdit(){
-    Quests.AddQuest(quest);
+    ArgumentNullException.ThrowIfNull(quest);
+
+    if(Id is null){
+      Quests.AddQuest(quest);
+    }
+    else{
+      quest.Id = Id.Value;
+      Quests.UpdateQuest(quest); 
+    }
+
     Navigator.NavigateTo("/");
   }
 }    

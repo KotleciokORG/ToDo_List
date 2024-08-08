@@ -32,28 +32,47 @@ public class QuestsClient{
 
     private readonly Genre[] genres = new GenresClient().GetGenres();
     public QuestSummary[] GetQuestSummaries() => quests.ToArray();
-    public void AddQuest(QuestDetails quest){
-        ArgumentException.ThrowIfNullOrWhiteSpace(quest.QuestGenreId);
-        QuestSummary questSummary = new(){
-            Id = quests.Count+1,
+    public void AddQuest(QuestDetails quest)
+    {
+        Genre genre = GetGenreById(quest.QuestGenreId);
+
+        QuestSummary questSummary = new()
+        {
+            Id = quests.Count + 1,
             QuestName = quest.QuestName,
             Description = quest.Description,
-            QuestGenre = genres.Single(genre => genre.Id == int.Parse(quest.QuestGenreId)).GenreName,
+            QuestGenre = genre.GenreName,
             Importance = quest.Importance,
             StartTime = quest.StartTime
         };
 
         quests.Add(questSummary);
     }
-    public QuestDetails GetQuest(int ID){
-        //chce w genres znalezc genre ktory zgadza z 
-        Genre? genre = new GenresClient().GetGenre(ID);
-        ArgumentNullException.ThrowIfNull(genre);
 
-        QuestSummary? quest = quests.Find(quest_summary => 
-                                String.Compare(genre.GenreName,quest_summary.QuestGenre,true) == 0);
-        ArgumentNullException.ThrowIfNull(quest);
-        return new(){
+    public void UpdateQuest(QuestDetails updatedQuest){
+        QuestSummary existingQuest = GetQuestSummaryById(updatedQuest.Id);
+        var genre = GetGenreById(updatedQuest.QuestGenreId);
+
+        existingQuest.QuestName = updatedQuest.QuestName;
+        existingQuest.Description = updatedQuest.Description;
+        existingQuest.QuestGenre = genre.GenreName;
+        existingQuest.Importance = updatedQuest.Importance;
+        existingQuest.StartTime = updatedQuest.StartTime;
+    }
+
+    public QuestDetails GetQuest(int ID)
+    { //to jest ID questa nie genre
+        QuestSummary? quest = GetQuestSummaryById(ID);
+        //trzeba zamienic w quest detail
+        //czyli z opisu na liczbe
+        Genre genre = genres.Single(genre => string.Equals(
+            genre.GenreName,
+            quest.QuestGenre,
+            StringComparison.OrdinalIgnoreCase));
+
+
+        return new()
+        {
             Id = ID,
             QuestName = quest.QuestName,
             Description = quest.Description,
@@ -62,5 +81,19 @@ public class QuestsClient{
             StartTime = quest.StartTime
         };
     }
+
+    private QuestSummary GetQuestSummaryById(int ID)
+    {
+        QuestSummary? quest = quests.Find(quest_sum => quest_sum.Id == ID); //quest summary o ktory chodzi
+        ArgumentNullException.ThrowIfNull(quest);
+        return quest;
+    }
+
+    private Genre GetGenreById(string? id)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(id);
+        return genres.Single(genre => genre.Id == int.Parse(id));
+    }
+    
 }
 

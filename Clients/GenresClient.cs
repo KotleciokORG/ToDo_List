@@ -23,5 +23,4 @@ public class GenresClient{
     ];
 
     public Genre[] GetGenres() => genres.ToArray();
-    public Genre? GetGenre(int id) => genres.Find(genre => id == genre.Id);
 }

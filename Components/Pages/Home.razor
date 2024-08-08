@@ -13,6 +13,7 @@ else
     <a role="button" class="btn btn-primary" href="/editquest">New quest</a>
     <table class="table table-striped table-bordered table-hover table-secondary mt-3" >
         <thead class="table-dark">
+            <th>Id</th>
             <th>Quest</th>
             <th>Description (optional)</th>
             <th>Quest Genre</th>
@@ -23,6 +24,7 @@ else
         <tbody>
             @foreach (var questSummary in questsSummaries){
                 <tr>
+                    <td>@questSummary.Id</td>
                     <td>@questSummary.QuestName</td>
                     <td>@questSummary.Description</td>
                     <td>@questSummary.QuestGenre</td>
