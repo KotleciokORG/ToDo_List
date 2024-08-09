@@ -1,7 +1,8 @@
 ﻿@page "/editquest"
 @page "/editquest/{id:int}"
-@inject NavigationManager Navigator
+@inject NavigationManager NavigationManager
 @inject QuestsClient Quests
+@rendermode InteractiveServer
 
 <PageTitle>@title</PageTitle>
 <h3>@title</h3>
@@ -95,6 +96,6 @@ else
       Quests.UpdateQuest(quest); 
     }
 
-    Navigator.NavigateTo("/");
+    NavigationManager.NavigateTo("/");
   }
 }    

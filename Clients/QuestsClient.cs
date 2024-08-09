@@ -60,7 +60,8 @@ public class QuestsClient{
         existingQuest.StartTime = updatedQuest.StartTime;
     }
 
-    public void DeleteQuest(QuestSummary quest){
+    public void DeleteQuest(int id){
+        var quest = GetQuestSummaryById(id);
         quests.Remove(quest);
     } 
 

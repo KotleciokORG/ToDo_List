@@ -1,5 +1,6 @@
 @inject QuestsClient Quests
-@inject NavigationManager Navigator
+@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
 
 <div class="modal fade" id="@GetModalId(Quest)" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -32,8 +33,7 @@
     } 
     private string title(QuestSummary? quest) => $"Usunąć zadanie:   {quest!.QuestName}?";
     private void Confirm(){
-        ArgumentNullException.ThrowIfNull(Quest);
-        Quests.DeleteQuest(Quest);
-        Navigator.Refresh(); //moze mozna bez?
+        Quests.DeleteQuest(Quest!.Id);
+        NavigationManager.Refresh(); //moze mozna bez?
     }
 }

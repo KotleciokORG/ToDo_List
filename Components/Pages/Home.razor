@@ -1,5 +1,6 @@
 ﻿@page "/"
 @inject QuestsClient Quests
+@rendermode InteractiveServer
 
 <PageTitle>To Do List</PageTitle>
 
@@ -30,7 +31,6 @@ else
                     <td>@questSummary.StartTime</td>
                     <td>
                         <div class="d d-flex flex-row">
-                            <DeleteQuest Quest="@questSummary" />
                             <a class="btn btn-primary me-2" role="button" href="@GetEditPageById(questSummary.Id)">
                                 <i class="bi bi-pencil-fill"></i>
                             </a>
@@ -40,6 +40,7 @@ else
                                 <i class="bi bi-file-earmark-x"></i>
                             </button>
                         </div>
+                        <DeleteQuest Quest="@questSummary" />
                     </td>
                 </tr>
             }
