@@ -29,7 +29,7 @@ public class QuestsClient{
             StartTime = new TimeOnly(1,30)
         }
     ];
-
+    private int IdCounter = 3;
     private readonly Genre[] genres = new GenresClient().GetGenres();
     public QuestSummary[] GetQuestSummaries() => quests.ToArray();
     public void AddQuest(QuestDetails quest)
@@ -38,14 +38,14 @@ public class QuestsClient{
 
         QuestSummary questSummary = new()
         {
-            Id = quests.Count + 1,
+            Id = IdCounter + 1,
             QuestName = quest.QuestName,
             Description = quest.Description,
             QuestGenre = genre.GenreName,
             Importance = quest.Importance,
             StartTime = quest.StartTime
         };
-
+        IdCounter++;
         quests.Add(questSummary);
     }
 
