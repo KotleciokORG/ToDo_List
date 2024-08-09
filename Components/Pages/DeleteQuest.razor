@@ -1,0 +1,39 @@
+@inject QuestsClient Quests
+@inject NavigationManager Navigator
+
+<div class="modal fade" id="@GetModalId(Quest)" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">@title(Quest)</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Tej operacji nie można cofnąć!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" 
+                class="btn btn-primary" 
+                data-bs-dismiss="modal"
+                @onclick="@Confirm" >Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+@code{
+    [Parameter]
+    public QuestSummary? Quest {get; set;}
+    public static string GetModalId(QuestSummary? quest) {
+        ArgumentNullException.ThrowIfNull(quest);
+        return $"deleteQuestNr{quest.Id}";
+    } 
+    private string title(QuestSummary? quest) => $"Usunąć zadanie:   {quest!.QuestName}?";
+    private void Confirm(){
+        ArgumentNullException.ThrowIfNull(Quest);
+        Quests.DeleteQuest(Quest);
+        Navigator.Refresh(); //moze mozna bez?
+    }
+}

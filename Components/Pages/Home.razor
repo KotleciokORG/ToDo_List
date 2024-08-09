@@ -1,6 +1,4 @@
 ﻿@page "/"
-@using Models
-@using Clients
 @inject QuestsClient Quests
 
 <PageTitle>To Do List</PageTitle>
@@ -30,7 +28,19 @@ else
                     <td>@questSummary.QuestGenre</td>
                     <td>@questSummary.Importance</td>
                     <td>@questSummary.StartTime</td>
-                    <td></td>
+                    <td>
+                        <div class="d d-flex flex-row">
+                            <DeleteQuest Quest="@questSummary" />
+                            <a class="btn btn-primary me-2" role="button" href="@GetEditPageById(questSummary.Id)">
+                                <i class="bi bi-pencil-fill"></i>
+                            </a>
+                            <button class="btn btn-danger" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="@GetDeleteModalTarget(questSummary)">
+                                <i class="bi bi-file-earmark-x"></i>
+                            </button>
+                        </div>
+                    </td>
                 </tr>
             }
         </tbody>
@@ -43,4 +53,7 @@ else
     {
         questsSummaries = Quests.GetQuestSummaries();
     }
+    private string GetEditPageById(int id) => $"editquest/{id}";
+    
+    private string GetDeleteModalTarget(QuestSummary? quest) => $"#{DeleteQuest.GetModalId(quest)}";
 }

@@ -60,6 +60,10 @@ public class QuestsClient{
         existingQuest.StartTime = updatedQuest.StartTime;
     }
 
+    public void DeleteQuest(QuestSummary quest){
+        quests.Remove(quest);
+    } 
+
     public QuestDetails GetQuest(int ID)
     { //to jest ID questa nie genre
         QuestSummary? quest = GetQuestSummaryById(ID);

@@ -6,5 +6,4 @@ public class QuestSummary{
     public required string QuestGenre { get; set; }
     public int Importance { get; set; }
     public TimeOnly StartTime { get; set; }
-
 }
