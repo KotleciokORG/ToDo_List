@@ -1,4 +1,4 @@
-namespace ToDo_List.Models;
+namespace TODO_LIST.Frontend.Models;
 public class QuestSummary{
     public int Id { get; set; }
     public required string QuestName { get; set; }

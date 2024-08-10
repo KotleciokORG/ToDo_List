@@ -1,6 +1,6 @@
-using ToDo_List.Models;
+using TODO_LIST.Frontend.Models;
 
-namespace ToDo_List.Clients;
+namespace TODO_LIST.Frontend.Clients;
 
 public class GenresClient{
     private readonly List<Genre> genres = [

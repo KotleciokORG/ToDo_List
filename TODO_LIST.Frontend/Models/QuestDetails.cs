@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace ToDo_List.Models;
+namespace TODO_LIST.Frontend.Models;
 public class QuestDetails{
     public int Id { get; set; }
     [Required(ErrorMessage = "Nazwa zadania wymagana")]

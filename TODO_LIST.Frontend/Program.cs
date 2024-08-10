@@ -1,5 +1,5 @@
-using ToDo_List.Clients;
-using ToDo_List.Components;
+using TODO_LIST.Frontend.Clients;
+using TODO_LIST.Frontend.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
