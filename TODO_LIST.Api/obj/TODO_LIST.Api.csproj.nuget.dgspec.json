@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Kacper\\Documents\\GitHub\\TODO_LIST.Frontend\\TODO_LIST.Api\\TODO_LIST.Api.csproj": {}
+    "C:\\Users\\Kacper\\Documents\\GitHub\\ToDo_List\\TODO_LIST.Api\\TODO_LIST.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Kacper\\Documents\\GitHub\\TODO_LIST.Frontend\\TODO_LIST.Api\\TODO_LIST.Api.csproj": {
+    "C:\\Users\\Kacper\\Documents\\GitHub\\ToDo_List\\TODO_LIST.Api\\TODO_LIST.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Kacper\\Documents\\GitHub\\TODO_LIST.Frontend\\TODO_LIST.Api\\TODO_LIST.Api.csproj",
+        "projectUniqueName": "C:\\Users\\Kacper\\Documents\\GitHub\\ToDo_List\\TODO_LIST.Api\\TODO_LIST.Api.csproj",
         "projectName": "TODO_LIST.Api",
-        "projectPath": "C:\\Users\\Kacper\\Documents\\GitHub\\TODO_LIST.Frontend\\TODO_LIST.Api\\TODO_LIST.Api.csproj",
+        "projectPath": "C:\\Users\\Kacper\\Documents\\GitHub\\ToDo_List\\TODO_LIST.Api\\TODO_LIST.Api.csproj",
         "packagesPath": "C:\\Users\\Kacper\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Kacper\\Documents\\GitHub\\TODO_LIST.Frontend\\TODO_LIST.Api\\obj\\",
+        "outputPath": "C:\\Users\\Kacper\\Documents\\GitHub\\ToDo_List\\TODO_LIST.Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Kacper\\AppData\\Roaming\\NuGet\\NuGet.Config"
