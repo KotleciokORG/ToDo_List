@@ -40,15 +40,17 @@ public static class QuestsEndpoints{
         ),
     ];
     public static WebApplication MapQuestsEndpoints(this WebApplication app){
+        var questsGroup = app.MapGroup("quests");
+
         //GET /quests
-        app.MapGet("quests", () => quests);
+        questsGroup.MapGet("/", () => quests);
 
         //GET /quests/1
-        app.MapGet("quests/{id}", (int id) => quests.Find((q) => q.ID == id))
+        questsGroup.MapGet("/{id}", (int id) => quests.Find((q) => q.ID == id))
             .WithName(GetGameEndpointName);
 
         //POST /quests
-        app.MapPost("quests", (CreateQuestDto quest) => 
+        questsGroup.MapPost("/", (CreateQuestDto quest) => 
         {
             QuestDto newQuest = new(
                 quests.Count + 1,
@@ -64,7 +66,7 @@ public static class QuestsEndpoints{
         });
 
         //PUT /quests/1
-        app.MapPut("quests/{id}", (int id, UpdateQuestDto putQuest) => 
+        questsGroup.MapPut("/{id}", (int id, UpdateQuestDto putQuest) => 
         {
             int replIndex = quests.FindIndex((QuestDto q) => q.ID == id);
             ArgumentException.Equals(replIndex,-1);
@@ -81,12 +83,12 @@ public static class QuestsEndpoints{
         });
 
         //DELETE /quests/1
-        app.MapDelete("quests/{id}", (int id) => 
+        questsGroup.MapDelete("/{id}", (int id) => 
         {
             quests.RemoveAll((QuestDto q) => q.ID == id);
             return Results.NoContent();
         });
 
-        return app;
+        return app; //Should I return group?
     }
 }
