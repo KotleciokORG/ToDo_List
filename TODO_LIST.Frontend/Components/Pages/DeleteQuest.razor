@@ -31,7 +31,7 @@
         ArgumentNullException.ThrowIfNull(quest);
         return $"deleteQuestNr{quest.Id}";
     } 
-    private string title(QuestSummary? quest) => $"Usunąć zadanie:   {quest!.QuestName}?";
+    private string title(QuestSummary? quest) => $"Usunąć zadanie:   {quest!.Name}?";
     private void Confirm(){
         Quests.DeleteQuest(Quest!.Id);
         NavigationManager.Refresh(); //moze mozna bez?

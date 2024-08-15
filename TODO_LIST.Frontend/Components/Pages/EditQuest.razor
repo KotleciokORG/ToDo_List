@@ -19,8 +19,8 @@ else
         <DataAnnotationsValidator />
         <div class="mb-3">
           <label for="name" class="form-label">Quest Name:</label>
-          <InputText id="name" @bind-Value="quest.QuestName" class="form-control" />
-          <ValidationMessage For="() => quest.QuestName" />
+          <InputText id="name" @bind-Value="quest.Name" class="form-control" />
+          <ValidationMessage For="() => quest.Name" />
         </div>
         <div class="mb-3">
           <label for="desc" class="form-label">Quest Description (optional):</label>
@@ -28,14 +28,14 @@ else
         </div>
         <div class="mb-3">
           <label for="genre" class="form-label">Quest Genre:</label>
-          <InputSelect id="genre" @bind-Value="quest.QuestGenreId" class="form-select" >
+          <InputSelect id="genre" @bind-Value="quest.GenreId" class="form-select" >
             <option value="" >Select genre</option>
             @foreach(var genre in genres){
               <option value="@genre.Id">@genre.GenreName</option>
             }
           
           </InputSelect>
-          <ValidationMessage For="() => quest.QuestGenreId" />
+          <ValidationMessage For="() => quest.GenreId" />
         </div>
         <div class="mb-3">
           <label for="importance" class="form-label">Quest Importance:</label>
@@ -73,13 +73,13 @@ else
     
     if(Id is null){
       quest = new(){
-        QuestName = string.Empty
+        Name = string.Empty
       };
       title = "New quest";
     }
     else{
       quest = Quests.GetQuest(Id.Value);
-      title = $"Edit {quest.QuestName}";
+      title = $"Edit {quest.Name}";
 }
   }
   protected override void OnInitialized(){
