@@ -24,3 +24,9 @@ C:\Users\Kacper\Documents\GitHub\ToDo_List\TODO_LIST.Api\obj\Debug\net8.0\refint
 C:\Users\Kacper\Documents\GitHub\ToDo_List\TODO_LIST.Api\obj\Debug\net8.0\TODO_LIST.Api.pdb
 C:\Users\Kacper\Documents\GitHub\ToDo_List\TODO_LIST.Api\obj\Debug\net8.0\TODO_LIST.Api.genruntimeconfig.cache
 C:\Users\Kacper\Documents\GitHub\ToDo_List\TODO_LIST.Api\obj\Debug\net8.0\ref\TODO_LIST.Api.dll
+C:\Users\Kacper\Documents\GitHub\ToDo_List\TODO_LIST.Api\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\Kacper\Documents\GitHub\ToDo_List\TODO_LIST.Api\bin\Debug\net8.0\MinimalApis.Extensions.dll
+C:\Users\Kacper\Documents\GitHub\ToDo_List\TODO_LIST.Api\bin\Debug\net8.0\MiniValidation.dll
+C:\Users\Kacper\Documents\GitHub\ToDo_List\TODO_LIST.Api\obj\Debug\net8.0\TODO_LIST.Api.csproj.AssemblyReference.cache
+C:\Users\Kacper\Documents\GitHub\ToDo_List\TODO_LIST.Api\obj\Debug\net8.0\TODO_LIST.Api.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Kacper\Documents\GitHub\ToDo_List\TODO_LIST.Api\obj\Debug\net8.0\TODO_LIS.808F7F2F.Up2Date

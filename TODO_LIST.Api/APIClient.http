@@ -11,7 +11,7 @@ Content-Type: application/json
     "Name": "Głaskanie Zenia",
     "Description": "Jest słodki",
     "Genre": "Codzienne",
-    "Importance": "9",
+    "Importance": "10",
     "StartTime": "10:13:00"
 }
 

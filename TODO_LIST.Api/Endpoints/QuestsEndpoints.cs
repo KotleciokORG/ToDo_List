@@ -40,7 +40,8 @@ public static class QuestsEndpoints{
         ),
     ];
     public static WebApplication MapQuestsEndpoints(this WebApplication app){
-        var questsGroup = app.MapGroup("quests");
+        var questsGroup = app.MapGroup("quests")
+                          .WithParameterValidation();
 
         //GET /quests
         questsGroup.MapGet("/", () => quests);
