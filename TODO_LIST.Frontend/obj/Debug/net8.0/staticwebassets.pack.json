@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "c:\\Users\\Kacper\\Documents\\GitHub\\ToDo_List\\TODO_LIST.Frontend\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\TODO_LIST.Frontend.bundle.scp.css",
+      "PackagePath": "staticwebassets\\TODO_LIST.Frontend.bundle.scp.css"
+    },
+    {
+      "Id": "c:\\Users\\Kacper\\Documents\\GitHub\\ToDo_List\\TODO_LIST.Frontend\\wwwroot\\app.css",
+      "PackagePath": "staticwebassets\\app.css"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.TODO_LIST.Frontend.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.TODO_LIST.Frontend.props",
+      "PackagePath": "build\\TODO_LIST.Frontend.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.TODO_LIST.Frontend.props",
+      "PackagePath": "buildMultiTargeting\\TODO_LIST.Frontend.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.TODO_LIST.Frontend.props",
+      "PackagePath": "buildTransitive\\TODO_LIST.Frontend.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

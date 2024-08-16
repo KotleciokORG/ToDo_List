@@ -1,4 +1,7 @@
 *.sln
-bin
-obj
-*.db
+TODO_LIST.Api\bin
+TODO_LIST.Api\obj
+TODO_LIST.Frontend\bin
+TODO_LIST.Frontend\obj
+.vscode
+*.dbs

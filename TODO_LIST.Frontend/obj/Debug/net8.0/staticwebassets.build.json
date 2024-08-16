@@ -1,0 +1,77 @@
+{
+  "Version": 1,
+  "Hash": "DPp0a2pB4oOanQBn1wYUiyvbxNyEeHwX3ty9mFjH+x4=",
+  "Source": "TODO_LIST.Frontend",
+  "BasePath": "_content/TODO_LIST.Frontend",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "TODO_LIST.Frontend\\wwwroot",
+      "Source": "TODO_LIST.Frontend",
+      "ContentRoot": "c:\\Users\\Kacper\\Documents\\GitHub\\ToDo_List\\TODO_LIST.Frontend\\wwwroot\\",
+      "BasePath": "_content/TODO_LIST.Frontend",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "c:\\Users\\Kacper\\Documents\\GitHub\\ToDo_List\\TODO_LIST.Frontend\\obj\\Debug\\net8.0\\scopedcss\\bundle\\TODO_LIST.Frontend.styles.css",
+      "SourceId": "TODO_LIST.Frontend",
+      "SourceType": "Computed",
+      "ContentRoot": "c:\\Users\\Kacper\\Documents\\GitHub\\ToDo_List\\TODO_LIST.Frontend\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "BasePath": "_content/TODO_LIST.Frontend",
+      "RelativePath": "TODO_LIST.Frontend.styles.css",
+      "AssetKind": "All",
+      "AssetMode": "CurrentProject",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ApplicationBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "c:\\Users\\Kacper\\Documents\\GitHub\\ToDo_List\\TODO_LIST.Frontend\\obj\\Debug\\net8.0\\scopedcss\\bundle\\TODO_LIST.Frontend.styles.css"
+    },
+    {
+      "Identity": "c:\\Users\\Kacper\\Documents\\GitHub\\ToDo_List\\TODO_LIST.Frontend\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\TODO_LIST.Frontend.bundle.scp.css",
+      "SourceId": "TODO_LIST.Frontend",
+      "SourceType": "Computed",
+      "ContentRoot": "c:\\Users\\Kacper\\Documents\\GitHub\\ToDo_List\\TODO_LIST.Frontend\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
+      "BasePath": "_content/TODO_LIST.Frontend",
+      "RelativePath": "TODO_LIST.Frontend.bundle.scp.css",
+      "AssetKind": "All",
+      "AssetMode": "Reference",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ProjectBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "c:\\Users\\Kacper\\Documents\\GitHub\\ToDo_List\\TODO_LIST.Frontend\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\TODO_LIST.Frontend.bundle.scp.css"
+    },
+    {
+      "Identity": "c:\\Users\\Kacper\\Documents\\GitHub\\ToDo_List\\TODO_LIST.Frontend\\wwwroot\\app.css",
+      "SourceId": "TODO_LIST.Frontend",
+      "SourceType": "Discovered",
+      "ContentRoot": "c:\\Users\\Kacper\\Documents\\GitHub\\ToDo_List\\TODO_LIST.Frontend\\wwwroot\\",
+      "BasePath": "_content/TODO_LIST.Frontend",
+      "RelativePath": "app.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\app.css"
+    }
+  ]
+}
