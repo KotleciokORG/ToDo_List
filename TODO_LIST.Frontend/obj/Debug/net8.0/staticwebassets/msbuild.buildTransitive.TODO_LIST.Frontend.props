@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\TODO_LIST.Frontend.props" />
-</Project>

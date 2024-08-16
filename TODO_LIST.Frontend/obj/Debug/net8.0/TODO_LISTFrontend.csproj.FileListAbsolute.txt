@@ -1,6 +1,0 @@
-C:\Users\Kacper\Documents\GitHub\ToDo_List\TODO_LIST.Frontend\obj\Debug\net8.0\TODO_LISTFrontend.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Kacper\Documents\GitHub\ToDo_List\TODO_LIST.Frontend\obj\Debug\net8.0\TODO_LISTFrontend.AssemblyInfoInputs.cache
-C:\Users\Kacper\Documents\GitHub\ToDo_List\TODO_LIST.Frontend\obj\Debug\net8.0\TODO_LISTFrontend.AssemblyInfo.cs
-C:\Users\Kacper\Documents\GitHub\ToDo_List\TODO_LIST.Frontend\obj\Debug\net8.0\TODO_LISTFrontend.csproj.CoreCompileInputs.cache
-C:\Users\Kacper\Documents\GitHub\ToDo_List\TODO_LIST.Frontend\obj\Debug\net8.0\TODO_LISTFrontend.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Kacper\Documents\GitHub\ToDo_List\TODO_LIST.Frontend\obj\Debug\net8.0\TODO_LISTFrontend.sourcelink.json
