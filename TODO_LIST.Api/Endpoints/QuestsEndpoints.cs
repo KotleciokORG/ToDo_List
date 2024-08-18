@@ -53,22 +53,31 @@ public static class QuestsEndpoints{
             .WithName(GetGameEndpointName);
 
         //POST /quests
-        questsGroup.MapPost("/", (CreateQuestDto quest, ToDoListContext dbContext) => 
+        questsGroup.MapPost("/", (CreateQuestDto newQuest, ToDoListContext dbContext) => 
         {
-            Quest newQuest = new()
+            Quest quest = new()
             {
-                Name = quest.Name,
-                Description = quest.Description,
-                GenreId = quest.GenreId,
-                Genre = dbContext.Genres.Find(quest.GenreId),
-                Importance = quest.Importance,
-                StartTime = quest.StartTime
+                Name = newQuest.Name,
+                Description = newQuest.Description,
+                GenreId = newQuest.GenreId,
+                Genre = dbContext.Genres.Find(newQuest.GenreId),
+                Importance = newQuest.Importance,
+                StartTime = newQuest.StartTime
             };
 
-            dbContext.Quests.Add(newQuest);
+            dbContext.Quests.Add(quest);
             dbContext.SaveChanges();
 
-            return Results.CreatedAtRoute(GetGameEndpointName,new {id = newQuest.Id},newQuest);
+            QuestDto questDto = new(
+                quest.Id,
+                quest.Name,
+                quest.Description,
+                quest.Genre!.Name,
+                quest.Importance,
+                quest.StartTime
+            );
+
+            return Results.CreatedAtRoute(GetGameEndpointName,new {id = quest.Id},questDto);
         });
 
         //PUT /quests/1
