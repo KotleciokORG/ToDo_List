@@ -1,4 +1,6 @@
+using TODO_LIST.Api.Data;
 using TODO_LIST.Api.Dtos;
+using TODO_LIST.Api.Entities;
 
 namespace TODO_LIST.Api.Endpoints;
 
@@ -51,19 +53,22 @@ public static class QuestsEndpoints{
             .WithName(GetGameEndpointName);
 
         //POST /quests
-        questsGroup.MapPost("/", (CreateQuestDto quest) => 
+        questsGroup.MapPost("/", (CreateQuestDto quest, ToDoListContext dbContext) => 
         {
-            QuestDto newQuest = new(
-                quests.Count + 1,
-                quest.Name,
-                quest.Description,
-                quest.Genre,
-                quest.Importance,
-                quest.StartTime
-            );
-            quests.Add(newQuest);
+            Quest newQuest = new()
+            {
+                Name = quest.Name,
+                Description = quest.Description,
+                GenreId = quest.GenreId,
+                Genre = dbContext.Genres.Find(quest.GenreId),
+                Importance = quest.Importance,
+                StartTime = quest.StartTime
+            };
 
-            return Results.CreatedAtRoute(GetGameEndpointName,new {id = newQuest.ID},newQuest);
+            dbContext.Quests.Add(newQuest);
+            dbContext.SaveChanges();
+
+            return Results.CreatedAtRoute(GetGameEndpointName,new {id = newQuest.Id},newQuest);
         });
 
         //PUT /quests/1
