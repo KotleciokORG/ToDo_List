@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using TODO_LIST.Api.Data;
 using TODO_LIST.Api.Dtos;
 using TODO_LIST.Api.Entities;
@@ -8,7 +9,7 @@ namespace TODO_LIST.Api.Endpoints;
 public static class QuestsEndpoints{
     private static string GetGameEndpointName = "GetGame";
 
-    private static readonly List<QuestDto> quests = [
+    private static readonly List<QuestSummaryDto> quests = [
         new (
             1,
             "Zadanie domowe",
@@ -43,6 +44,7 @@ public static class QuestsEndpoints{
         ),
     ];
     public static WebApplication MapQuestsEndpoints(this WebApplication app){
+        
         var questsGroup = app.MapGroup("quests")
                           .WithParameterValidation();
 
@@ -50,8 +52,11 @@ public static class QuestsEndpoints{
         questsGroup.MapGet("/", () => quests);
 
         //GET /quests/1
-        questsGroup.MapGet("/{id}", (int id) => quests.Find((q) => q.ID == id))
-            .WithName(GetGameEndpointName);
+        questsGroup.MapGet("/{id}", (int id, ToDoListContext dbContext) => 
+            {
+                return dbContext.Quests.Find(id)!.ToQuestDetailsDto();
+            }
+        ).WithName(GetGameEndpointName);
 
         //POST /quests
         questsGroup.MapPost("/", (CreateQuestDto newQuest, ToDoListContext dbContext) => 
@@ -62,15 +67,15 @@ public static class QuestsEndpoints{
             dbContext.Quests.Add(quest);
             dbContext.SaveChanges();
 
-            return Results.CreatedAtRoute(GetGameEndpointName,new {id = quest.Id},quest.ToDto());
+            return Results.CreatedAtRoute(GetGameEndpointName,new {id = quest.Id},quest.ToQuestDetailsDto());
         });
 
         //PUT /quests/1
         questsGroup.MapPut("/{id}", (int id, UpdateQuestDto putQuest) => 
         {
-            int replIndex = quests.FindIndex((QuestDto q) => q.ID == id);
+            int replIndex = quests.FindIndex((QuestSummaryDto q) => q.ID == id);
             ArgumentException.Equals(replIndex,-1);
-            QuestDto updatedQuest = new(
+            QuestSummaryDto updatedQuest = new(
                 id,
                 putQuest.Name,
                 putQuest.Description,
@@ -85,7 +90,7 @@ public static class QuestsEndpoints{
         //DELETE /quests/1
         questsGroup.MapDelete("/{id}", (int id) => 
         {
-            quests.RemoveAll((QuestDto q) => q.ID == id);
+            quests.RemoveAll((QuestSummaryDto q) => q.ID == id);
             return Results.NoContent();
         });
 

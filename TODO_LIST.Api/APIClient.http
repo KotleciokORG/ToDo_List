@@ -1,7 +1,7 @@
 GET http://localhost:5214/quests 
 
 ###
-GET http://localhost:5214/quests/2
+GET http://localhost:5214/quests/1
 
 ###
 POST http://localhost:5214/quests
