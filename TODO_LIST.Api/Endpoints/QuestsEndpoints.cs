@@ -49,12 +49,20 @@ public static class QuestsEndpoints{
                           .WithParameterValidation();
 
         //GET /quests
-        questsGroup.MapGet("/", () => quests);
+        questsGroup.MapGet("/", (ToDoListContext dbContext) => 
+        {
+            return dbContext.Quests.
+                Select<Quest,QuestDetailsDto>
+                    ((Quest q) => q.ToQuestDetailsDto());
+        });
 
         //GET /quests/1
         questsGroup.MapGet("/{id}", (int id, ToDoListContext dbContext) => 
             {
-                return dbContext.Quests.Find(id)!.ToQuestDetailsDto();
+                Quest? quest = dbContext.Quests.Find(id);
+
+                return quest is null ? 
+                    Results.NotFound() : Results.Ok(quest.ToQuestDetailsDto());
             }
         ).WithName(GetGameEndpointName);
 
@@ -62,7 +70,6 @@ public static class QuestsEndpoints{
         questsGroup.MapPost("/", (CreateQuestDto newQuest, ToDoListContext dbContext) => 
         {
             Quest quest = newQuest.ToEntity();
-            quest.Genre = dbContext.Genres.Find(newQuest.GenreId); 
             
             dbContext.Quests.Add(quest);
             dbContext.SaveChanges();
