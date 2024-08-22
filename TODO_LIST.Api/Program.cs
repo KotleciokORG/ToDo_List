@@ -9,6 +9,7 @@ builder.Services.AddSqlite<ToDoListContext>(connString);
 var app = builder.Build();
 
 app.MapQuestsEndpoints();
+app.MapGenreEndpoints();
 
 await app.MigrateDbAsync();
 
