@@ -6,7 +6,14 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents();
-builder.Services.AddSingleton<QuestsClient>();
+
+var todoListApiUrl = builder.Configuration["ToDoListApiUrl"] ??
+                     throw new Exception("ToDoListApiUrl is not set in configuration");
+
+builder.Services.AddHttpClient<QuestsClient>(client =>
+                 client.BaseAddress = new Uri(todoListApiUrl));
+builder.Services.AddHttpClient<GenresClient>(client => 
+                 client.BaseAddress = new Uri(todoListApiUrl));
 
 var app = builder.Build();
 

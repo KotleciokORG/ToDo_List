@@ -1,5 +1,5 @@
 *.sln
 bin/
 obj/
-.vscode
-*.dbs
+*.vscode
+*.db*

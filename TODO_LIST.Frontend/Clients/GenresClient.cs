@@ -2,7 +2,8 @@ using TODO_LIST.Frontend.Models;
 
 namespace TODO_LIST.Frontend.Clients;
 
-public class GenresClient{
+public class GenresClient(HttpClient httpClient)
+{
     private readonly List<Genre> genres = [
         new() {
             Id = 1,

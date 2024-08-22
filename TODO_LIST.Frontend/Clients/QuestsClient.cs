@@ -2,7 +2,8 @@ using TODO_LIST.Frontend.Models;
 
 namespace TODO_LIST.Frontend.Clients;
 
-public class QuestsClient{
+public class QuestsClient(HttpClient httpClient)
+{
     private readonly List<QuestSummary> quests = [
         new() {
             Id = 1,
@@ -30,7 +31,7 @@ public class QuestsClient{
         }
     ];
     private int IdCounter = 3;
-    private readonly Genre[] genres = new GenresClient().GetGenres();
+    private readonly Genre[] genres = new GenresClient(httpClient).GetGenres();
     public QuestSummary[] GetQuestSummaries() => quests.ToArray();
     public void AddQuest(QuestDetails quest)
     {
