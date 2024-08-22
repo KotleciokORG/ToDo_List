@@ -19,6 +19,14 @@ public class GenresClient{
         new() {
             Id = 4,
             GenreName = "Żywienie"
+        },
+        new() {
+            Id = 5,
+            GenreName = "Hobby"
+        },
+        new() {
+            Id = 6,
+            GenreName = "Znajomości"
         }
     ];
 

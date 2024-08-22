@@ -6,25 +6,25 @@ public class QuestsClient{
     private readonly List<QuestSummary> quests = [
         new() {
             Id = 1,
-            QuestName = "Poucz sie",
+            Name = "Poucz sie",
             Description = "Informatyka",
-            QuestGenre = "Nauka",
+            Genre = "Nauka",
             Importance = 6,
             StartTime = new TimeOnly(2,30)
         },
         new() {
             Id = 2,
-            QuestName = "Wysypiaj sie",
+            Name = "Wysypiaj sie",
             Description = "Najlepiej 8h",
-            QuestGenre = "Codzienne",
+            Genre = "Codzienne",
             Importance = 10,
             StartTime = new TimeOnly(8,0)
         },
         new() {
             Id = 3,
-            QuestName = "Zjedz Sniadanie",
+            Name = "Zjedz Sniadanie",
             Description = "Platki na mleku",
-            QuestGenre = "Żywienie",
+            Genre = "Żywienie",
             Importance = 3,
             StartTime = new TimeOnly(1,30)
         }
@@ -34,14 +34,14 @@ public class QuestsClient{
     public QuestSummary[] GetQuestSummaries() => quests.ToArray();
     public void AddQuest(QuestDetails quest)
     {
-        Genre genre = GetGenreById(quest.QuestGenreId);
+        Genre genre = GetGenreById(quest.GenreId);
 
         QuestSummary questSummary = new()
         {
             Id = IdCounter + 1,
-            QuestName = quest.QuestName,
+            Name = quest.Name,
             Description = quest.Description,
-            QuestGenre = genre.GenreName,
+            Genre = genre.GenreName,
             Importance = quest.Importance,
             StartTime = quest.StartTime
         };
@@ -51,11 +51,11 @@ public class QuestsClient{
 
     public void UpdateQuest(QuestDetails updatedQuest){
         QuestSummary existingQuest = GetQuestSummaryById(updatedQuest.Id);
-        var genre = GetGenreById(updatedQuest.QuestGenreId);
+        var genre = GetGenreById(updatedQuest.GenreId);
 
-        existingQuest.QuestName = updatedQuest.QuestName;
+        existingQuest.Name = updatedQuest.Name;
         existingQuest.Description = updatedQuest.Description;
-        existingQuest.QuestGenre = genre.GenreName;
+        existingQuest.Genre = genre.GenreName;
         existingQuest.Importance = updatedQuest.Importance;
         existingQuest.StartTime = updatedQuest.StartTime;
     }
@@ -72,16 +72,16 @@ public class QuestsClient{
         //czyli z opisu na liczbe
         Genre genre = genres.Single(genre => string.Equals(
             genre.GenreName,
-            quest.QuestGenre,
+            quest.Genre,
             StringComparison.OrdinalIgnoreCase));
 
 
         return new()
         {
             Id = ID,
-            QuestName = quest.QuestName,
+            Name = quest.Name,
             Description = quest.Description,
-            QuestGenreId = genre.Id.ToString(),
+            GenreId = genre.Id.ToString(),
             Importance = quest.Importance,
             StartTime = quest.StartTime
         };
