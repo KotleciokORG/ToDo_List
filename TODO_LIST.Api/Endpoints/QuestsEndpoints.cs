@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 using TODO_LIST.Api.Data;
 using TODO_LIST.Api.Dtos;
 using TODO_LIST.Api.Entities;
@@ -12,21 +11,22 @@ public static class QuestsEndpoints{
     public static WebApplication MapQuestsEndpoints(this WebApplication app){
         
         var questsGroup = app.MapGroup("quests")
-                          .WithParameterValidation();
+                             .WithParameterValidation();
 
         //GET /quests
-        questsGroup.MapGet("/", (ToDoListContext dbContext) => 
+        questsGroup.MapGet("/", async (ToDoListContext dbContext) => 
         {
-            return dbContext.Quests
+            return await dbContext.Quests
                             .Include((Quest q) => q.Genre)
                             .Select((Quest q) => q.ToQuestSummaryDto())
-                            .AsNoTracking();
+                            .AsNoTracking()
+                            .ToListAsync();
         });
 
         //GET /quests/1
-        questsGroup.MapGet("/{id}", (int id, ToDoListContext dbContext) => 
+        questsGroup.MapGet("/{id}", async (int id, ToDoListContext dbContext) => 
         {
-            Quest? quest = dbContext.Quests.Find(id);
+            Quest? quest = await dbContext.Quests.FindAsync(id);
 
             return quest is null ? 
                 Results.NotFound() : Results.Ok(quest.ToQuestDetailsDto());
@@ -34,20 +34,20 @@ public static class QuestsEndpoints{
         ).WithName(GetGameEndpointName);
 
         //POST /quests
-        questsGroup.MapPost("/", (CreateQuestDto newQuest, ToDoListContext dbContext) => 
+        questsGroup.MapPost("/", async (CreateQuestDto newQuest, ToDoListContext dbContext) => 
         {
             Quest quest = newQuest.ToEntity();
             
             dbContext.Quests.Add(quest);
-            dbContext.SaveChanges();
+            await dbContext.SaveChangesAsync();
 
             return Results.CreatedAtRoute(GetGameEndpointName,new {id = quest.Id},quest.ToQuestDetailsDto());
         });
 
         //PUT /quests/1
-        questsGroup.MapPut("/{id}", (int id, UpdateQuestDto putQuest, ToDoListContext dbContext) => 
+        questsGroup.MapPut("/{id}", async (int id, UpdateQuestDto putQuest, ToDoListContext dbContext) => 
         {
-            var existingQuest = dbContext.Quests.Find(id);
+            var existingQuest = await dbContext.Quests.FindAsync(id);
             if(existingQuest is null)
                 return Results.NotFound();
 
@@ -55,17 +55,17 @@ public static class QuestsEndpoints{
                      .CurrentValues
                      .SetValues(putQuest.ToEntity(id));
 
-            dbContext.SaveChanges();
+            await dbContext.SaveChangesAsync();
 
             return Results.NoContent();
         });
 
         //DELETE /quests/1
-        questsGroup.MapDelete("/{id}", (int id, ToDoListContext dbContext) => 
+        questsGroup.MapDelete("/{id}", async (int id, ToDoListContext dbContext) => 
         {
-            dbContext.Quests
+            await dbContext.Quests
                      .Where((Quest q) => q.Id == id)
-                     .ExecuteDelete();
+                     .ExecuteDeleteAsync();
 
             return Results.NoContent();
         });
