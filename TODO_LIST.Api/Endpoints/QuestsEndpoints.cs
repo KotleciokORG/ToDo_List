@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using TODO_LIST.Api.Data;
 using TODO_LIST.Api.Dtos;
@@ -51,9 +52,10 @@ public static class QuestsEndpoints{
         //GET /quests
         questsGroup.MapGet("/", (ToDoListContext dbContext) => 
         {
-            return dbContext.Quests.
-                Select<Quest,QuestDetailsDto>
-                    ((Quest q) => q.ToQuestDetailsDto());
+            return dbContext.Quests
+                            .Include((Quest q) => q.Genre)
+                            .Select((Quest q) => q.ToQuestSummaryDto())
+                            .AsNoTracking();
         });
 
         //GET /quests/1
