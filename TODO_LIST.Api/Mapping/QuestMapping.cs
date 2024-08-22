@@ -15,6 +15,18 @@ public static class QuestMapping
             StartTime = quest.StartTime
         };
     }
+
+    public static Quest ToEntity(this UpdateQuestDto quest, int id){
+        return new Quest()
+        {
+            Id = id,
+            Name = quest.Name,
+            Description = quest.Description,
+            GenreId = quest.GenreId,
+            Importance = quest.Importance,
+            StartTime = quest.StartTime
+        };
+    }
     public static QuestSummaryDto ToQuestSummaryDto(this Quest quest){
         return new(
             quest.Id,

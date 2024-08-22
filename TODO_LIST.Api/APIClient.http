@@ -8,11 +8,11 @@ POST http://localhost:5214/quests
 Content-Type: application/json
 
 {
-    "Name": "Głaskanie Zenia",
-    "Description": "Jest słodki",
-    "GenreId": 2,
+    "Name": "Kochanie Elizy",
+    "Description": "Jest najlepsza",
+    "GenreId": 4,
     "Importance": "10",
-    "StartTime": "10:13:00"
+    "StartTime": "12:20:00"
 }
 
 ###
@@ -22,10 +22,10 @@ Content-Type: application/json
 {
     "Name": "Robienie algorytmiki",
     "Description": "Bedzie ciężko",
-    "Genre": "Praca w domu",
+    "GenreId": 5,
     "Importance": "9",
     "StartTime": "12:13:00"
 }
 
 ###
-DELETE http://localhost:5214/quests/4
+DELETE http://localhost:5214/quests/3
