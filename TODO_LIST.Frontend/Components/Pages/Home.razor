@@ -49,9 +49,9 @@ else
 
 @code{
     private QuestSummary[]? questsSummaries;
-    protected override void OnInitialized()
+    protected async override Task OnInitializedAsync()
     {
-        questsSummaries = Quests.GetQuestSummaries();
+        questsSummaries = await Quests.GetQuestAsync();
     }
     private string GetEditPageById(int id) => $"editquest/{id}";
     

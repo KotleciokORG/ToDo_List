@@ -2,6 +2,7 @@
 @page "/editquest/{id:int}"
 @inject NavigationManager NavigationManager
 @inject QuestsClient Quests
+@inject GenresClient Genres
 @rendermode InteractiveServer
 
 <PageTitle>@title</PageTitle>
@@ -15,7 +16,7 @@ else
 {
   <div class="row">
     <div class="col-md-4">
-      <EditForm FormName="EditQuest" Model="@quest" OnValidSubmit="HandleEdit">
+      <EditForm FormName="EditQuest" Model="@quest" OnValidSubmit="HandleEditAsync">
         <DataAnnotationsValidator />
         <div class="mb-3">
           <label for="name" class="form-label">Quest Name:</label>
@@ -61,12 +62,10 @@ else
   //quest details to przechodnia struktura aby utworzyc quest summary z uzyciem genrow
   [SupplyParameterFromForm]
   private QuestDetails? quest { get; set; } //na poczatku null, przy inicjalizacji sie ustawia
-
-  private GenresClient genresClient = new();
   private Genre[]? genres;
 
   //dlaczego nie genres=new genresClient().GetGenres?
-  protected override void OnParametersSet(){
+  protected async override Task OnParametersSetAsync(){
     if(quest is not null){
       return;
     }
@@ -78,22 +77,22 @@ else
       title = "New quest";
     }
     else{
-      quest = Quests.GetQuest(Id.Value);
+      quest = await Quests.GetQuestAsync(Id.Value);
       title = $"Edit {quest.Name}";
 }
   }
-  protected override void OnInitialized(){
-    genres = genresClient.GetGenres();
+  protected async override Task OnInitializedAsync(){
+    genres = await Genres.GetGenresAsync();
   } 
-  private void HandleEdit(){
+  private async Task HandleEditAsync(){
     ArgumentNullException.ThrowIfNull(quest);
 
     if(Id is null){
-      Quests.AddQuest(quest);
+      await Quests.AddQuestAsync(quest);
     }
     else{
       quest.Id = Id.Value;
-      Quests.UpdateQuest(quest); 
+      await Quests.UpdateQuestAsync(quest); 
     }
 
     NavigationManager.NavigateTo("/");
