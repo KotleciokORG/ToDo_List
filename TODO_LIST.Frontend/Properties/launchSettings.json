@@ -13,6 +13,7 @@
         "commandName": "Project",
         "dotnetRunMessages": true,
         "launchBrowser": true,
+        "_comment": "This URL below is your link to website",
         "applicationUrl": "http://localhost:5149",
         "environmentVariables": {
           "ASPNETCORE_ENVIRONMENT": "Development"
