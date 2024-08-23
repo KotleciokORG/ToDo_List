@@ -35,22 +35,22 @@ namespace TODO_LIST.Api.Data.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Codzienne"
+                            Name = "Daily"
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Praca w domu"
+                            Name = "Homework"
                         },
                         new
                         {
                             Id = 3,
-                            Name = "Nauka"
+                            Name = "Self-development"
                         },
                         new
                         {
                             Id = 4,
-                            Name = "Żywienie"
+                            Name = "Food/Nutrition"
                         },
                         new
                         {
@@ -60,7 +60,7 @@ namespace TODO_LIST.Api.Data.Migrations
                         new
                         {
                             Id = 6,
-                            Name = "Znajomości"
+                            Name = "Friends"
                         });
                 });
 

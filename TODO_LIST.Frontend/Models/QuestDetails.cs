@@ -5,10 +5,10 @@ using TODO_LIST.Frontend.Converters;
 namespace TODO_LIST.Frontend.Models;
 public class QuestDetails{
     public int Id { get; set; }
-    [Required(ErrorMessage = "Nazwa zadania wymagana")]
+    [Required(ErrorMessage = "Quest Name required")]
     public required string Name { get; set; }
     public string? Description { get; set; }
-    [Required(ErrorMessage = "Gatunek zadania wymagany")]
+    [Required(ErrorMessage = "Quest Genre required")]
     [JsonConverter(typeof(StringConverter))]
     public string? GenreId { get; set; }
     [Range(0,10)]

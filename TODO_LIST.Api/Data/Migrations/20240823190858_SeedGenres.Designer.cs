@@ -11,7 +11,7 @@ using TODO_LIST.Api.Data;
 namespace TODO_LIST.Api.Data.Migrations
 {
     [DbContext(typeof(ToDoListContext))]
-    [Migration("20240816163706_SeedGenres")]
+    [Migration("20240823190858_SeedGenres")]
     partial class SeedGenres
     {
         /// <inheritdoc />
@@ -38,22 +38,22 @@ namespace TODO_LIST.Api.Data.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Codzienne"
+                            Name = "Daily"
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Praca w domu"
+                            Name = "Homework"
                         },
                         new
                         {
                             Id = 3,
-                            Name = "Nauka"
+                            Name = "Self-development"
                         },
                         new
                         {
                             Id = 4,
-                            Name = "Żywienie"
+                            Name = "Food/Nutrition"
                         },
                         new
                         {
@@ -63,7 +63,7 @@ namespace TODO_LIST.Api.Data.Migrations
                         new
                         {
                             Id = 6,
-                            Name = "Znajomości"
+                            Name = "Friends"
                         });
                 });
 

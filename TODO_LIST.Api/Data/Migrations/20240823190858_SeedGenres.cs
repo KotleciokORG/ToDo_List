@@ -17,12 +17,12 @@ namespace TODO_LIST.Api.Data.Migrations
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { 1, "Codzienne" },
-                    { 2, "Praca w domu" },
-                    { 3, "Nauka" },
-                    { 4, "Żywienie" },
+                    { 1, "Daily" },
+                    { 2, "Homework" },
+                    { 3, "Self-development" },
+                    { 4, "Food/Nutrition" },
                     { 5, "Hobby" },
-                    { 6, "Znajomości" }
+                    { 6, "Friends" }
                 });
         }
 

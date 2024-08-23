@@ -8,7 +8,7 @@ builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents();
 
 var todoListApiUrl = builder.Configuration["ToDoListApiUrl"] ??
-                     throw new Exception("ToDoListApiUrl is not set in configuration");
+                     throw new Exception("ToDoListApiUrl is not set in configurations");
 
 builder.Services.AddHttpClient<QuestsClient>(client =>
                  client.BaseAddress = new Uri(todoListApiUrl));
