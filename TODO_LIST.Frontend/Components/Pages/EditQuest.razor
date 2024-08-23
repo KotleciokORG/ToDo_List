@@ -32,7 +32,7 @@ else
           <InputSelect id="genre" @bind-Value="quest.GenreId" class="form-select" >
             <option value="" >Select genre</option>
             @foreach(var genre in genres){
-              <option value="@genre.Id">@genre.GenreName</option>
+              <option value="@genre.Id">@genre.Name</option>
             }
           
           </InputSelect>

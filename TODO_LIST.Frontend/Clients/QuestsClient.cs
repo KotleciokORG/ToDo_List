@@ -8,7 +8,7 @@ public class QuestsClient(HttpClient httpClient)
     public async Task<QuestSummary[]> GetQuestAsync() => 
            await httpClient.GetFromJsonAsync<QuestSummary[]>("quests/") ?? [];
     public async Task<QuestDetails> GetQuestAsync(int ID) =>
-        await httpClient.GetFromJsonAsync<QuestDetails>($"quests/ID") ?? 
+        await httpClient.GetFromJsonAsync<QuestDetails>($"quests/{ID}") ?? 
         throw new Exception("Quest not found");
 
     /*
