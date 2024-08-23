@@ -1,72 +1,17 @@
+using Microsoft.AspNetCore.Http.HttpResults;
 using TODO_LIST.Frontend.Models;
 
 namespace TODO_LIST.Frontend.Clients;
 
 public class QuestsClient(HttpClient httpClient)
 {
-    private readonly List<QuestSummary> quests = [
-        new() {
-            Id = 1,
-            Name = "Poucz sie",
-            Description = "Informatyka",
-            Genre = "Nauka",
-            Importance = 6,
-            StartTime = new TimeOnly(2,30)
-        },
-        new() {
-            Id = 2,
-            Name = "Wysypiaj sie",
-            Description = "Najlepiej 8h",
-            Genre = "Codzienne",
-            Importance = 10,
-            StartTime = new TimeOnly(8,0)
-        },
-        new() {
-            Id = 3,
-            Name = "Zjedz Sniadanie",
-            Description = "Platki na mleku",
-            Genre = "Żywienie",
-            Importance = 3,
-            StartTime = new TimeOnly(1,30)
-        }
-    ];
-    private int IdCounter = 3;
-    private readonly Genre[] genres = new GenresClient(httpClient).GetGenres();
-    public QuestSummary[] GetQuestSummaries() => quests.ToArray();
-    public void AddQuest(QuestDetails quest)
-    {
-        Genre genre = GetGenreById(quest.GenreId);
+    public async Task<QuestSummary[]> GetQuestAsync() => 
+           await httpClient.GetFromJsonAsync<QuestSummary[]>("quests/") ?? [];
+    public async Task<QuestDetails> GetQuestAsync(int ID) =>
+        await httpClient.GetFromJsonAsync<QuestDetails>($"quests/ID") ?? 
+        throw new Exception("Quest not found");
 
-        QuestSummary questSummary = new()
-        {
-            Id = IdCounter + 1,
-            Name = quest.Name,
-            Description = quest.Description,
-            Genre = genre.GenreName,
-            Importance = quest.Importance,
-            StartTime = quest.StartTime
-        };
-        IdCounter++;
-        quests.Add(questSummary);
-    }
-
-    public void UpdateQuest(QuestDetails updatedQuest){
-        QuestSummary existingQuest = GetQuestSummaryById(updatedQuest.Id);
-        var genre = GetGenreById(updatedQuest.GenreId);
-
-        existingQuest.Name = updatedQuest.Name;
-        existingQuest.Description = updatedQuest.Description;
-        existingQuest.Genre = genre.GenreName;
-        existingQuest.Importance = updatedQuest.Importance;
-        existingQuest.StartTime = updatedQuest.StartTime;
-    }
-
-    public void DeleteQuest(int id){
-        var quest = GetQuestSummaryById(id);
-        quests.Remove(quest);
-    } 
-
-    public QuestDetails GetQuest(int ID)
+    /*
     { //to jest ID questa nie genre
         QuestSummary? quest = GetQuestSummaryById(ID);
         //trzeba zamienic w quest detail
@@ -87,19 +32,44 @@ public class QuestsClient(HttpClient httpClient)
             StartTime = quest.StartTime
         };
     }
-
-    private QuestSummary GetQuestSummaryById(int ID)
+    */
+    
+    public async Task AddQuestAsync(QuestDetails quest) =>
+           await httpClient.PostAsJsonAsync("quests/",quest);
+    
+    /*
+    Genre genre = GetGenreById(quest.GenreId);
+    QuestSummary questSummary = new()
     {
-        QuestSummary? quest = quests.Find(quest_sum => quest_sum.Id == ID); //quest summary o ktory chodzi
-        ArgumentNullException.ThrowIfNull(quest);
-        return quest;
-    }
+        Id = IdCounter + 1,
+        Name = quest.Name,
+        Description = quest.Description,
+        Genre = genre.GenreName,
+        Importance = quest.Importance,
+        StartTime = quest.StartTime
+    };
+    IdCounter++;
+    quests.Add(questSummary);
+    */
 
-    private Genre GetGenreById(string? id)
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(id);
-        return genres.Single(genre => genre.Id == int.Parse(id));
-    }
+    public async Task UpdateQuestAsync(QuestDetails updatedQuest) =>
+           await httpClient.PutAsJsonAsync($"quests/{updatedQuest.Id}",updatedQuest);
+    
+    /*
+    QuestSummary existingQuest = GetQuestSummaryById(updatedQuest.Id);
+    var genre = GetGenreById(updatedQuest.GenreId);
+    existingQuest.Name = updatedQuest.Name;
+    existingQuest.Description = updatedQuest.Description;
+    existingQuest.Genre = genre.GenreName;
+    existingQuest.Importance = updatedQuest.Importance;
+    existingQuest.StartTime = updatedQuest.StartTime;
+    */
+
+    public async Task DeleteQuestAsync(int id) =>
+        await httpClient.DeleteAsync($"quests/{id}");
+
+
+    
     
 }
 
