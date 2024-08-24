@@ -12,7 +12,11 @@ Copy project in a new catalog
 ```bash
   git clone https://github.com/KotleciokORG/ToDo_List.git
 ```
-Go to To Do List catalog, then, first go to Api catalog and run 
+Go to ToDoList catalog
+```bash
+  dotnet build
+```
+then, first go to Api catalog and run 
 ```bash
   dotnet run
 ```
@@ -23,7 +27,9 @@ If something is wrong, try installing dependecies with
   dotnet add package MinimalApis.Extensions --version 0.11.0
   dotnet run
 ```
-This will run API for your app, then go back and switch to Frontend catalog and run
+This will run API for your app
+
+Then, in new console go to Frontend catalog and run
 ```bash
   dotnet run
 ```
